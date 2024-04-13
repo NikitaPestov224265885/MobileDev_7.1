@@ -9,23 +9,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat">
 
-        <!-- Main activity, which is the entry point of the app -->
-        <activity android:name=".CreateAdvertActivity"
-            android:exported="true"> <!-- This line is added -->
+        <activity android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+
         <!-- Other activities used in the app -->
         <activity android:name=".ShowAllAdsActivity"
-            android:exported="false"/> <!-- Exported set to false if not explicitly invoked by other apps -->
+            android:exported="false"/>
         <activity android:name=".RemoveItemActivity"
-            android:exported="false"/> <!-- Same here -->
+            android:exported="false"/>
+        <activity android:name=".CreateAdvertActivity"
+            android:exported="false"/>
 
-        <!-- Any other activities you add will also need to be declared here -->
 
     </application>
 

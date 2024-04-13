@@ -26,19 +26,25 @@ public class ShowAllAdsActivity extends Activity {
         loadAdverts();
     }
 
-    private void loadAdverts() {
-        // This should be run in a background thread
-        Cursor advertsCursor = databaseHelper.getAllAdverts();
-        if (advertsCursor.moveToFirst()) {
-            do {
-                // Assuming your cursor has the description in the second column
-                String description = advertsCursor.getString(1);
-                advertsList.add(description);
-            } while (advertsCursor.moveToNext());
-        }
-        advertsCursor.close();
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadAdverts();
+    }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, advertsList);
+    private void loadAdverts() {
+        Cursor cursor = databaseHelper.getAllAdverts();
+        List<String> adverts = new ArrayList<>();
+        while(cursor.moveToNext()) {
+            String description = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.KEY_ADVERT_DESCRIPTION));
+            adverts.add(description);
+        }
+        cursor.close();
+
+        // Set up the adapter with the new list
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, adverts);
+        System.out.println((adapter.getCount()));
         listView.setAdapter(adapter);
     }
+
 }

@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_ADVERT_ID = "id";
     private static final String KEY_ADVERT_TYPE = "type";
     private static final String KEY_ADVERT_PHONE = "phone";
-    private static final String KEY_ADVERT_DESCRIPTION = "description";
+    public static final String KEY_ADVERT_DESCRIPTION = "description";
     private static final String KEY_ADVERT_DATE = "date";
     private static final String KEY_ADVERT_LOCATION = "location";
 
