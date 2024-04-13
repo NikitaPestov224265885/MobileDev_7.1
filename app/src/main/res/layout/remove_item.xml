@@ -1,21 +1,34 @@
-<!-- list_item.xml -->
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="8dp">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <TextView
-        android:id="@+id/textViewItemName"
-        android:layout_width="0dp"
-        android:layout_weight="1"
+        android:id="@+id/textViewAdvertType"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Item Name" />
+        android:text="Type"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+
+    <TextView
+        android:id="@+id/textViewAdvertDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Description"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+    <TextView
+        android:id="@+id/textViewAdvertDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Phone and Location"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 
     <Button
         android:id="@+id/buttonRemove"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Remove" />
+        android:text="Remove"
+        android:layout_gravity="center_horizontal"/>
 </LinearLayout>

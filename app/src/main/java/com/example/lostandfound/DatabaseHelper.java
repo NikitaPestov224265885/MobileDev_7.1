@@ -1,5 +1,6 @@
 package com.example.lostandfound;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -86,6 +87,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         return db.delete(TABLE_ADVERTS, KEY_ADVERT_ID + " = ?", new String[]{String.valueOf(advertId)}) == 1;
     }
+
+    public Advert getAdvert(long id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // Query to select the advert row based on ID
+        Cursor cursor = db.query(TABLE_ADVERTS, new String[] {KEY_ADVERT_ID, KEY_ADVERT_TYPE, KEY_ADVERT_PHONE, KEY_ADVERT_DESCRIPTION, KEY_ADVERT_DATE, KEY_ADVERT_LOCATION},
+                KEY_ADVERT_ID + "=?", new String[] {String.valueOf(id)}, null, null, null, null);
+
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        // Assuming your cursor now holds the data of the advert and that you correctly handle cases where no data is found
+        @SuppressLint("Range") Advert advert = new Advert(
+                cursor.getLong(cursor.getColumnIndex(KEY_ADVERT_ID)),
+                cursor.getString(cursor.getColumnIndex(KEY_ADVERT_TYPE)),
+                cursor.getString(cursor.getColumnIndex(KEY_ADVERT_PHONE)),
+                cursor.getString(cursor.getColumnIndex(KEY_ADVERT_DESCRIPTION)),
+                cursor.getString(cursor.getColumnIndex(KEY_ADVERT_DATE)),
+                cursor.getString(cursor.getColumnIndex(KEY_ADVERT_LOCATION))
+        );
+        cursor.close();
+        return advert;
+    }
+
 
     public static class Advert {
         private long id;

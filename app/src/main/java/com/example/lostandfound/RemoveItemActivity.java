@@ -4,23 +4,35 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class RemoveItemActivity extends Activity {
+
     private Button buttonRemove;
     private DatabaseHelper databaseHelper;
-    private long advertId; // You need to pass this ID when starting this activity
+    private long advertId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.remove_item);
 
-        databaseHelper = new DatabaseHelper(this);
+        TextView textViewType = findViewById(R.id.textViewAdvertType);
+        TextView textViewDescription = findViewById(R.id.textViewAdvertDescription);
+        TextView textViewDetails = findViewById(R.id.textViewAdvertDetails);
         buttonRemove = findViewById(R.id.buttonRemove);
 
-        // Assuming you passed the advert ID as an extra in the intent
+        databaseHelper = new DatabaseHelper(this);
         advertId = getIntent().getLongExtra("ADVERT_ID", -1);
+
+        // Fetch the advert details from the database
+        DatabaseHelper.Advert advert = databaseHelper.getAdvert(advertId);
+        if (advert != null) {
+            textViewType.setText("Type: " + advert.getType());
+            textViewDescription.setText("Description: " + advert.getDescription());
+            textViewDetails.setText("Phone: " + advert.getPhone() + ", Location: " + advert.getLocation());
+        }
 
         buttonRemove.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,15 +43,11 @@ public class RemoveItemActivity extends Activity {
     }
 
     private void removeAdvert() {
-        if (advertId != -1) {
-            boolean deleted = databaseHelper.deleteAdvert(advertId);
-            if (deleted) {
-                Toast.makeText(this, "Advert removed successfully", Toast.LENGTH_SHORT).show();
-                // Finish activity and possibly refresh the list in ShowAllAdsActivity
-                finish();
-            } else {
-                Toast.makeText(this, "Error removing advert", Toast.LENGTH_SHORT).show();
-            }
+        if (databaseHelper.deleteAdvert(advertId)) {
+            Toast.makeText(this, "Advert removed successfully", Toast.LENGTH_SHORT).show();
+            finish();  // Close activity and go back
+        } else {
+            Toast.makeText(this, "Error removing advert", Toast.LENGTH_SHORT).show();
         }
     }
 }
