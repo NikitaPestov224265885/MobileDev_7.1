@@ -9,19 +9,19 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Database Info
-    private static final String DATABASE_NAME = "LostFoundDB";
-    private static final int DATABASE_VERSION = 1;
+    public static final String DATABASE_NAME = "LostFoundDB";
+    public static final int DATABASE_VERSION = 1;
 
     // Table Names
-    private static final String TABLE_ADVERTS = "adverts";
+    public static final String TABLE_ADVERTS = "adverts";
 
     // Advert Table Columns
-    private static final String KEY_ADVERT_ID = "id";
-    private static final String KEY_ADVERT_TYPE = "type";
-    private static final String KEY_ADVERT_PHONE = "phone";
+    public static final String KEY_ADVERT_ID = "id";
+    public static final String KEY_ADVERT_TYPE = "type";
+    public static final String KEY_ADVERT_PHONE = "phone";
     public static final String KEY_ADVERT_DESCRIPTION = "description";
-    private static final String KEY_ADVERT_DATE = "date";
-    private static final String KEY_ADVERT_LOCATION = "location";
+    public static final String KEY_ADVERT_DATE = "date";
+    public static final String KEY_ADVERT_LOCATION = "location";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
