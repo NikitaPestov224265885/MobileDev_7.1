@@ -1,0 +1,32 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.lostandfound">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat">
+
+        <!-- Main activity, which is the entry point of the app -->
+        <activity android:name=".CreateAdvertActivity"
+            android:exported="true"> <!-- This line is added -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Other activities used in the app -->
+        <activity android:name=".ShowAllAdsActivity"
+            android:exported="false"/> <!-- Exported set to false if not explicitly invoked by other apps -->
+        <activity android:name=".RemoveItemActivity"
+            android:exported="false"/> <!-- Same here -->
+
+        <!-- Any other activities you add will also need to be declared here -->
+
+    </application>
+
+</manifest>
