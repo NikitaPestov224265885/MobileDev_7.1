@@ -41,6 +41,12 @@ public class ShowAllAdsActivity extends Activity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadAdverts();
+    }
+
     private void loadAdverts() {
         Cursor cursor = databaseHelper.getAllAdverts();
         advertsDescriptions.clear();
